@@ -13,4 +13,7 @@ help:
 pytorch:
 	docker build -t $(registry)/pytorch -f pytorch/dockerfile .
 
+start-server:
+	nvidia-docker run -p 5000:5000 $(registry)/pytorch jupyter notebook --port=9999 --ip=* --no-browser
+
 .PHONY: help pytorch
