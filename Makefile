@@ -25,7 +25,8 @@ mxnet:
 keras:
 	docker build -t $(registry)/keras -f keras/dockerfile .
 
-
+cntk:
+	docker build -t $(registry)/cntk -f cntk/dockerfile .
 
 start-notebook:
 	nvidia-docker run -p 5000:5000 -v $(notebooks_dir):/mnt/notebooks $(image) \
