@@ -35,7 +35,7 @@ caffe2:
 	docker build -t $(registry)/caffe2 -f caffe2/dockerfile .
 
 start-notebook:
-	nvidia-docker run -p $(port):$(port) -it -v $(notebooks_dir):/mnt/notebooks $(image) \
-	jupyter notebook --port=$(port) --ip=* --no-browser --notebook-dir=/mnt/notebooks --allow-root
+	nvidia-docker run -p $(port):$(port) -it -v $(notebooks_dir):/workspace/notebooks $(image) \
+	jupyter notebook --port=$(port) --ip=* --no-browser --allow-root
 
 .PHONY: help pytorch mxnet tf keras cntk chainer caffe2
