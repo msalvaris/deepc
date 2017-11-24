@@ -6,7 +6,7 @@ endef
 export PROJECT_HELP_MSG
 
 registry:=deepc
-notebooks_dir?=.
+notebooks_dir?=$(PWD)
 port?=9999
 image:=$(registry)/pytorch
 
@@ -36,6 +36,6 @@ caffe2:
 
 start-notebook:
 	nvidia-docker run -p 5000:5000 -v $(notebooks_dir):/mnt/notebooks $(image) \
-	jupyter notebook --port=$(port) --ip=* --no-browser --notebook-dir=/mnt/notebooks
+	jupyter notebook --port=$(port) --ip=* --no-browser --notebook-dir=/mnt/notebooks --allow-root
 
 .PHONY: help pytorch mxnet tf keras cntk chainer caffe2
