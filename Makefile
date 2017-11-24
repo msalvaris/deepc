@@ -28,6 +28,9 @@ keras:
 cntk:
 	docker build -t $(registry)/cntk -f cntk/dockerfile .
 
+chainer:
+	docker build -t $(registry)/chainer -f chainer/dockerfile .
+
 start-notebook:
 	nvidia-docker run -p 5000:5000 -v $(notebooks_dir):/mnt/notebooks $(image) \
 	jupyter notebook --port=$(port) --ip=* --no-browser --notebook-dir=/mnt/notebooks
