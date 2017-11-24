@@ -16,6 +16,9 @@ help:
 pytorch:
 	docker build -t $(registry)/pytorch -f pytorch/dockerfile .
 
+tf:
+	docker build -t $(registry)/tensorflow -f tensorflow/dockerfile .
+
 start-notebook:
 	nvidia-docker run -p 5000:5000 -v $(notebooks_dir):/mnt/notebooks $(image) \
 	jupyter notebook --port=$(port) --ip=* --no-browser --notebook-dir=/mnt/notebooks
