@@ -19,8 +19,13 @@ pytorch:
 tf:
 	docker build -t $(registry)/tensorflow -f tensorflow/dockerfile .
 
-tf:
+mxnet:
 	docker build -t $(registry)/mxnet -f mxnet/dockerfile .
+
+keras:
+	docker build -t $(registry)/keras -f keras/dockerfile .
+
+
 
 start-notebook:
 	nvidia-docker run -p 5000:5000 -v $(notebooks_dir):/mnt/notebooks $(image) \
