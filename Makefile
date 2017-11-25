@@ -41,4 +41,4 @@ start-notebook:
 	nvidia-docker run -p $(port):$(port) -it -v $(notebooks_dir):/workspace/notebooks $(image) \
 	jupyter notebook --port=$(port) --ip=* --no-browser --allow-root
 
-.PHONY: help pytorch mxnet tf keras cntk chainer caffe2
+.PHONY: help pytorch mxnet tf keras cntk chainer caffe2 base
