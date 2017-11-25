@@ -13,10 +13,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
          libnccl-dev=2.0.5-2+cuda8.0 \
          libjpeg-dev \
          libpng-dev &&\
-     rm -rf /var/lib/apt/lists/*
+     	 rm -rf /var/lib/apt/lists/*
 
 
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         autotools-dev \
         gfortran-multilib \
         libavcodec-dev \
