@@ -16,6 +16,48 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
      rm -rf /var/lib/apt/lists/*
 
 
+RUN apt-get install -y --no-install-recommends \
+        autotools-dev \
+        gfortran-multilib \
+        libavcodec-dev \
+        libavformat-dev \
+        libjasper-dev \
+        libjpeg-dev \
+        libpng-dev \
+        liblapacke-dev \
+        libswscale-dev \
+        libtiff-dev \
+        pkg-config \
+        wget \
+        zlib1g-dev \
+        # Protobuf
+        ca-certificates \
+        curl \
+        unzip \
+        # For Kaldi
+        python-dev \
+        automake \
+        libtool \
+        autoconf \
+        subversion \
+        # For Kaldi's dependencies
+        libapr1 libaprutil1 libltdl-dev libltdl7 libserf-1-1 libsigsegv2 libsvn1 m4 \
+        # For SWIG
+        libpcre3-dev && \
+    	rm -rf /var/lib/apt/lists/*
+
+
+RUN OPENMPI_VERSION=1.10.3 && \
+    wget -q -O - https://www.open-mpi.org/software/ompi/v1.10/downloads/openmpi-${OPENMPI_VERSION}.tar.gz | tar -xzf - && \
+    cd openmpi-${OPENMPI_VERSION} && \
+    ./configure --prefix=/usr/local/mpi && \
+    make -j"$(nproc)" install && \
+    rm -rf /openmpi-${OPENMPI_VERSION}
+
+ENV PATH /usr/local/mpi/bin:$PATH
+ENV LD_LIBRARY_PATH /usr/local/mpi/lib:$LD_LIBRARY_PATH
+
+
 ENV PYTHON_VERSION=3.6
 RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
      chmod +x ~/miniconda.sh && \
