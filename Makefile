@@ -8,31 +8,34 @@ export PROJECT_HELP_MSG
 registry:=deepc
 notebooks_dir?=$(PWD)
 port?=9999
-image:=$(registry)/pytorch
+image:=$(registry)/pytorch36
 
 help:
 	@echo "$$PROJECT_HELP_MSG" | less
 
+base:
+	docker build -t $(registry)/base36 -f base/dockerfile .
+
 pytorch:
-	docker build -t $(registry)/pytorch -f pytorch/dockerfile .
+	docker build -t $(registry)/pytorch36 -f pytorch/dockerfile .
 
 tf:
-	docker build -t $(registry)/tensorflow -f tensorflow/dockerfile .
+	docker build -t $(registry)/tensorflow36 -f tensorflow/dockerfile .
 
 mxnet:
-	docker build -t $(registry)/mxnet -f mxnet/dockerfile .
+	docker build -t $(registry)/mxnet36 -f mxnet/dockerfile .
 
 keras:
-	docker build -t $(registry)/keras -f keras/dockerfile .
+	docker build -t $(registry)/keras36 -f keras/dockerfile .
 
 cntk:
-	docker build -t $(registry)/cntk -f cntk/dockerfile .
+	docker build -t $(registry)/cntk36 -f cntk/dockerfile .
 
 chainer:
-	docker build -t $(registry)/chainer -f chainer/dockerfile .
+	docker build -t $(registry)/chainer36 -f chainer/dockerfile .
 
 caffe2:
-	docker build -t $(registry)/caffe2 -f caffe2/dockerfile .
+	docker build -t $(registry)/caffe236 -f caffe2/dockerfile .
 
 start-notebook:
 	nvidia-docker run -p $(port):$(port) -it -v $(notebooks_dir):/workspace/notebooks $(image) \
