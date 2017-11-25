@@ -1,12 +1,7 @@
-FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
-
-RUN echo "deb http://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64 /" > /etc/apt/sources.list.d/nvidia-ml.list
+FROM deepc/base36
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         autotools-dev \
-        build-essential \
-        cmake \
-        git \
         gfortran-multilib \
         libavcodec-dev \
         libavformat-dev \
@@ -36,7 +31,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     	rm -rf /var/lib/apt/lists/*
 
 
-
 RUN OPENMPI_VERSION=1.10.3 && \
     wget -q -O - https://www.open-mpi.org/software/ompi/v1.10/downloads/openmpi-${OPENMPI_VERSION}.tar.gz | tar -xzf - && \
     cd openmpi-${OPENMPI_VERSION} && \
@@ -47,22 +41,9 @@ RUN OPENMPI_VERSION=1.10.3 && \
 ENV PATH /usr/local/mpi/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/local/mpi/lib:$LD_LIBRARY_PATH
 
-
-ENV PYTHON_VERSION=3.6
-RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
-     chmod +x ~/miniconda.sh && \
-     ~/miniconda.sh -b -p /opt/conda && \
-     rm ~/miniconda.sh && \
-     /opt/conda/bin/conda create -y --name cntk-py$PYTHON_VERSION python=$PYTHON_VERSION numpy pyyaml scipy \
-     ipython mkl pandas jupyter ipykernel scikit-learn && \
-     /opt/conda/bin/conda clean -ya
-ENV PATH /opt/conda/envs/cntk-py$PYTHON_VERSION/bin:$PATH
-
 RUN pip install --upgrade pip && \
     pip install https://cntk.ai/PythonWheel/GPU/cntk-2.3-cp36-cp36m-linux_x86_64.whl && \
     conda clean -yt
 
-WORKDIR /workspace
-RUN chmod -R a+w /workspace
 
 
