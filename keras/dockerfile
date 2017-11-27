@@ -14,27 +14,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         pkg-config \
         wget \
         zlib1g-dev \
-        # Protobuf
         ca-certificates \
         curl \
         unzip \
         openmpi-bin \
-        # For Kaldi
-        python-dev \
-        automake \
-        libtool \
-        autoconf \
-        subversion \
-        # For Kaldi's dependencies
-        libapr1 libaprutil1 libltdl-dev libltdl7 libserf-1-1 libsigsegv2 libsvn1 m4 \
-        # For SWIG
-        libpcre3-dev && \
     	rm -rf /var/lib/apt/lists/*
 
 
 ENV PATH /usr/local/mpi/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/local/mpi/lib:$LD_LIBRARY_PATH
-
+ENV KMP_DUPLICATE_LIB_OK TRUE
 
 RUN pip install --upgrade pip && \
     pip install tensorflow-gpu && \
