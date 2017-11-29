@@ -8,6 +8,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     	rm -rf /var/lib/apt/lists/*
 
 
+ENV PATH /usr/local/mpi/bin:$PATH
+ENV LD_LIBRARY_PATH /usr/local/mpi/lib:$LD_LIBRARY_PATH
+ENV KMP_DUPLICATE_LIB_OK TRUE
+
 RUN pip install --upgrade pip && \
     pip install tensorflow-gpu && \
     pip install https://cntk.ai/PythonWheel/GPU/cntk-2.3-cp36-cp36m-linux_x86_64.whl && \
