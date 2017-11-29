@@ -16,25 +16,28 @@ help:
 base:
 	docker build -t $(registry)/base36 -f base/dockerfile .
 
-pytorch:
+all: pytorch tf mxnet keras cntk chainer
+	@echo "All containers built"
+
+pytorch: base
 	docker build -t $(registry)/pytorch36 -f pytorch/dockerfile .
 
-tf:
+tf: base
 	docker build -t $(registry)/tensorflow36 -f tensorflow/dockerfile .
 
-mxnet:
+mxnet: base
 	docker build -t $(registry)/mxnet36 -f mxnet/dockerfile .
 
-keras:
+keras: base
 	docker build -t $(registry)/keras36 -f keras/dockerfile .
 
-cntk:
+cntk: base
 	docker build -t $(registry)/cntk36 -f cntk/dockerfile .
 
-chainer:
+chainer: base
 	docker build -t $(registry)/chainer36 -f chainer/dockerfile .
 
-caffe2:
+caffe2: base
 	docker build -t $(registry)/caffe236 -f caffe2/dockerfile .
 
 start-notebook:

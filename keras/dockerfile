@@ -1,29 +1,12 @@
 FROM deepc/base36
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        autotools-dev \
-        gfortran-multilib \
-        libavcodec-dev \
-        libavformat-dev \
-        libjasper-dev \
-        libjpeg-dev \
+        openmpi-bin \
         libpng-dev \
-        liblapacke-dev \
-        libswscale-dev \
         libtiff-dev \
-        pkg-config \
-        wget \
-        zlib1g-dev \
-        ca-certificates \
-        curl \
-        unzip \
-        openmpi-bin && \
+		libjasper-dev && \
     	rm -rf /var/lib/apt/lists/*
 
-
-ENV PATH /usr/local/mpi/bin:$PATH
-ENV LD_LIBRARY_PATH /usr/local/mpi/lib:$LD_LIBRARY_PATH
-ENV KMP_DUPLICATE_LIB_OK TRUE
 
 RUN pip install --upgrade pip && \
     pip install tensorflow-gpu && \
