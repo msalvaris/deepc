@@ -1,5 +1,5 @@
 FROM deepc/base:p36-cuda9-cudnn7-devel
 
-RUN conda install --name py$PYTHON_VERSION pytorch=0.3.1_py36_cuda9.0.176_cudnn7.0.5_2 torchvision=0.2.0 magma-cuda90 -c soumith && \
+RUN conda install --name py$PYTHON_VERSION pytorch=0.3.1-py36_cuda9.0.176_cudnn7.0.5_nccl2_2 torchvision=0.2.0 magma-cuda90 -c soumith && \
 	conda clean -yt
 
