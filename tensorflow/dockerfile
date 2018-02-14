@@ -1,4 +1,4 @@
-FROM deepc/base:p36-cuda9-cudnn7-devel
+FROM deepc/base:p36-cuda91-cudnn7-devel
 
 RUN pip install tensorflow-gpu==1.6.0rc0 && \
 	conda clean -yt

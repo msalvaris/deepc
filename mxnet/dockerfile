@@ -1,4 +1,4 @@
-FROM deepc/base:p36-cuda9-cudnn7-devel
+FROM deepc/base:p36-cuda91-cudnn7-devel
 
 RUN pip install --upgrade pip && \
     pip install mxnet-cu90==1.1.0b20180214 && \
