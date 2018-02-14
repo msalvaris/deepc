@@ -1,4 +1,4 @@
-FROM deepc/base36
+FROM deepc/base:p36-cuda9-cudnn7-devel
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         openmpi-bin \
@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV KMP_DUPLICATE_LIB_OK TRUE
 
 RUN pip install --upgrade pip && \
-    pip install tensorflow-gpu && \
-    pip install https://cntk.ai/PythonWheel/GPU/cntk-2.3-cp36-cp36m-linux_x86_64.whl && \
-    git clone git://github.com/fchollet/keras.git /src && pip install -e /src[tests] && \
-    pip install git+git://github.com/fchollet/keras.git && \
+    pip install tensorflow-gpu==1.6.0rc0 && \
+    pip install https://cntk.ai/PythonWheel/GPU/cntk-2.4-cp36-cp36m-linux_x86_64.whl && \
+    git clone git://github.com/keras-team/keras.git /src && pip install -e /src[tests] && \
+	pip install git+git://github.com/keras-team/keras.git && \
     conda clean -yt
