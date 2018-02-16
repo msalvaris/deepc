@@ -13,6 +13,5 @@ ENV KMP_DUPLICATE_LIB_OK TRUE
 RUN pip install --upgrade pip && \
     pip install tensorflow-gpu==1.6.0rc0 && \
     pip install https://cntk.ai/PythonWheel/GPU/cntk-2.4-cp36-cp36m-linux_x86_64.whl && \
-    git clone git://github.com/keras-team/keras.git /src && pip install -e /src[tests] && \
-	pip install git+git://github.com/keras-team/keras.git && \
+    pip install keras==2.1.4
     conda clean -yt
