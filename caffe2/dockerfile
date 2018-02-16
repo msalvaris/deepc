@@ -1,5 +1,5 @@
 FROM deepc/base:p36-cuda9-cudnn7-devel
 
 
-RUN conda install --name py$PYTHON_VERSION caffe2-cuda9.0-cudnn7 -c caffe2 && \
+RUN conda install --name py$PYTHON_VERSION matplotlib caffe2-cuda9.0-cudnn7 -c caffe2 && \
 	conda clean -yt
