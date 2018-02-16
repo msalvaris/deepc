@@ -16,7 +16,7 @@ help:
 base:
 	docker build -t $(registry)/base:p36-cuda9-cudnn7-devel -f base/dockerfile .
 
-all: pytorch tf mxnet keras cntk chainer
+all: pytorch tf mxnet keras cntk chainer caffe2
 	@echo "All containers built"
 
 pytorch: base
