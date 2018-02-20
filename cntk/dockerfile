@@ -1,21 +1,17 @@
-FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+FROM deepc/base:p36-cuda9-cudnn7-devel
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-		software-properties-common \
-		wget \
         openmpi-bin \
         libpng-dev \
         libtiff-dev \
 		libjasper-dev && \
     	rm -rf /var/lib/apt/lists/*
 
-RUN add-apt-repository ppa:jonathonf/python-3.6 && apt-get update &&\
-	apt-get install python3.6 &&\
-	wget https://bootstrap.pypa.io/get-pip.py &&\
-	python3.6 get-pip.py &&\
-	python3.6 -m pip install https://cntk.ai/PythonWheel/GPU/cntk-2.3-cp36-cp36m-linux_x86_64.whl \
-	numpy pyyaml scipy ipython mkl pandas jupyter ipykernel scikit-learn
+ENV KMP_DUPLICATE_LIB_OK TRUE
 
+RUN pip install --upgrade pip && \
+    pip install --upgrade https://cntk.ai/PythonWheel/GPU/cntk-2.3-cp36-cp36m-linux_x86_64.whl && \
+    conda clean -yt
 
 
 
