@@ -26,5 +26,5 @@ WORKDIR /workspace
 RUN chmod -R a+w /workspace
 
 
-RUN conda install --name py$PYTHON_VERSION matplotlib caffe2-cuda9.0-cudnn7 -c caffe2 && \
+RUN conda install --name py$PYTHON_VERSION matplotlib caffe2-cuda8.0-cudnn7 -c caffe2 && \
 	conda clean -yt
