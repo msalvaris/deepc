@@ -1,9 +1,11 @@
 FROM deepc/base:p36-cuda9-cudnn7-devel
 
+RUN add-apt-repository ppa:fkrull/deadsnakes
 RUN apt-get update && apt-get install -y --no-install-recommends \
         openmpi-bin \
         libpng-dev \
         libtiff-dev \
+        libpython3.6-dev \
 		libjasper-dev && \
     	rm -rf /var/lib/apt/lists/*
 
