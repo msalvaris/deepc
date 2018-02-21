@@ -3,7 +3,7 @@ FROM deepc/base:p36-cuda9-cudnn7-devel
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		software-properties-common python-software-properties
 
-RUN add-apt-repository ppa:fkrull/deadsnakes
+#RUN add-apt-repository ppa:fkrull/deadsnakes
 RUN apt-get update && apt-get install -y --no-install-recommends \
         openmpi-bin \
         libpng-dev \
