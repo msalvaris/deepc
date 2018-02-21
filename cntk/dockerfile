@@ -1,6 +1,6 @@
 FROM microsoft/cntk:2.4-gpu-python3.5-cuda9.0-cudnn7.0
 
-PATH=/root/anaconda3/envs/cntk-py35/bin:$PATH
+ENV PATH=/root/anaconda3/envs/cntk-py35/bin:$PATH
 
 RUN pip install --upgrade pip && \
     pip install numpy pyyaml scipy ipython mkl pandas jupyter ipykernel scikit-learn
